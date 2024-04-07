@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Message } from './components/Message';
 
 export const user  = {
   message: '',
@@ -9,9 +10,9 @@ function App() {
   const [message, setMessage] = useState('Click button for message update');
 
   
-
+// update current state of message based on which messageButton was selected and reexecute/rerender App component.
   function handlemessageButton(message){             
-    user.message = message;
+    //user.message = message;
     setMessage(message);
     console.log(message);
     
@@ -29,11 +30,13 @@ function App() {
       </header>
       <main>
         <h2>Time to get started!</h2>
-        <p>
-          <button onClick={ () => handlemessageButton('Hello from React World')}>Set Message</button>
-        </p>
+        <menu>
+          <Message onSelect={ () => handlemessageButton('Hello from React World')}>Introduction Message</Message>
+          <Message onSelect={ () => handlemessageButton('Learn and be not afraid')}>Motivational Message </Message>
+          <Message onSelect={ () => handlemessageButton('Practice makes perfect')}>Thoughtful Message</Message>
+        </menu>
       </main>
-      
+      {message}
     </div>
   );
 }
