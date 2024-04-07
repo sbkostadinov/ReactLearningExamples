@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import { Message } from './components/Message';
-
-export const user  = {
-  message: '',
-};
+import { Message } from './Message';
+ 
 
 function App() {
 
@@ -11,8 +8,8 @@ function App() {
 
   
 // update current state of message based on which messageButton was selected and reexecute/rerender App component.
+// handlemessageButton => Introduction Message, Motivational Message ,Thoughtful Message 
   function handlemessageButton(message){             
-    //user.message = message;
     setMessage(message);
     console.log(message);
     
@@ -29,14 +26,16 @@ function App() {
         </p>
       </header>
       <main>
-        <h2>Time to get started!</h2>
-        <menu>
-          <Message onSelect={ () => handlemessageButton('Hello from React World')}>Introduction Message</Message>
-          <Message onSelect={ () => handlemessageButton('Learn and be not afraid')}>Motivational Message </Message>
-          <Message onSelect={ () => handlemessageButton('Practice makes perfect')}>Thoughtful Message</Message>
-        </menu>
+        < section id="examples">
+          <h2>Time to get started!</h2>
+          <menu>
+              < Message onSelectButton={ () => handlemessageButton('Hello from React World')}> Introduction Message </Message>
+              < Message onSelectButton={ () => handlemessageButton('Learn and be not afraid')}> Motivational Message </Message>
+              < Message onSelectButton={ () => handlemessageButton('Practice makes perfect')}> Thoughtful Message </Message>
+          </menu>
+          {message}
+        </section>
       </main>
-      {message}
     </div>
   );
 }
