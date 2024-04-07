@@ -1,12 +1,12 @@
 
 
-function Message({children, onSelectButton}) {
+function Message({children, onButtonSelect}) {
 
     return (
 
         <div>
             <li>
-                <button onClick={onSelectButton}>{children}</button>
+                <button onClick={onButtonSelect}>{children}</button>
             </li>
         </div>
 
