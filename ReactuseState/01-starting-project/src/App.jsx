@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Message } from './components/Message';
 
 export const user  = {
   message: '',
@@ -30,8 +29,9 @@ function App() {
       </header>
       <main>
         <h2>Time to get started!</h2>
-        <Message onClick={ () => handlemessageButton('Hello from State')}>setMessage</Message>
-        <p>{message}</p>
+        <p>
+          <button onClick={ () => handlemessageButton('Hello from React World')}>Set Message</button>
+        </p>
       </main>
       
     </div>
