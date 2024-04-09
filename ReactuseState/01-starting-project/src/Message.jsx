@@ -1,6 +1,6 @@
 
 
-function Message({children, onButtonSelect}) {
+export default function Message({children, onButtonSelect}) {
 
     return (
 
