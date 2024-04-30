@@ -11,7 +11,7 @@ export default function Player ( {name, symbol} ) {
     let displayPlayer = <span className="player-name">{name}</span>;
 
     if(isEdit) {
-        displayPlayer = <input type="text" required></input>;
+        displayPlayer = <input type="text" required defaultValue={name}></input>;
        
     } 
 
