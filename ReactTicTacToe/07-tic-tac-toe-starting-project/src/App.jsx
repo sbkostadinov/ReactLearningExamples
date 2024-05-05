@@ -1,5 +1,6 @@
 
 
+import { GameBoard } from './components/GameBoard.jsx';
 import { Player } from './components/Player.jsx';
 
 export function App() {
@@ -9,11 +10,10 @@ export function App() {
       <div id="game-container">
         PLAYERS
         <ol id="players">
-          <Player name="Player 1" symbol="X"/>
-          <Player name="Player 2" symbol="O"/>  
+          <Player initialname="Player 1" symbol="X"/>
+          <Player initialname="Player 2" symbol="O"/>  
         </ol>
-
-        GAME BOARD
+        <GameBoard />
       </div>
       LOG 
      </main>
