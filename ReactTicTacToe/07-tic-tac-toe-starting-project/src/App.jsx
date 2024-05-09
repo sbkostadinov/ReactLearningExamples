@@ -38,7 +38,7 @@ export function App() {
           <Player initialname="Player 2" symbol="O" isActive={activePlayer === 'O'}/>  
         </ol>
         <GameBoard  selectSquare={handleSelectSq} turns={gameTurns}/>
-        <Log />
+        <Log gameBoardTurns={gameTurns}/>
       </div>
       LOG 
      </main>
