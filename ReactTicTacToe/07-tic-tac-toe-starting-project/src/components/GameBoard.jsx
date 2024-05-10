@@ -39,13 +39,14 @@ export default function GameBoard ( {selectSquare, turns } ){
         selectSquare();
     }
         */
+
     return ( <ol id="game-board">
         {gameBoard.map( (row, rowIndex) => 
         <li key={rowIndex}>
             <ol>
                 {row.map((playerSymb, colIndex ) => ( 
                 <li key={colIndex}>
-                    <button onClick={() => selectSquare(rowIndex, colIndex)}>{playerSymb}</button>
+                    <button onClick={() => selectSquare(rowIndex, colIndex) } disabled={playerSymb !== null}>{playerSymb}</button>
                     </li> 
                 ))}
             </ol>
