@@ -5,22 +5,32 @@ import { GameBoard } from './components/GameBoard.jsx';
 import { Log } from './components/Log.jsx';
 import { Player } from './components/Player.jsx';
 
+// creatubg helper function 
+
+function deriveActivePlayer(gameTurns) {
+
+    let currentPlayer = 'X';
+    if(gameTurns.length > 0 && gameTurns[0].player === 'X'){
+        currentPlayer = 'O';
+    }
+    return currentPlayer;
+}
 
 export function App() {
 
-  const [activePlayer, setActivePlayer] = useState("X");
+
+  //const [activePlayer, setActivePlayer] = useState("X");
   const [gameTurns, setGameTurns] = useState([]);
 
-  function handleSelectSq(rowIndex, colIndex) {
-    setActivePlayer((curactivePlayer) => curactivePlayer === 'X' ? 'O' : 'X');
-    setGameTurns((prevTurns) => {
-        let curPlayer = 'X';
+  const activePlayer = deriveActivePlayer(gameTurns);
 
-        if (prevTurns.length > 0 && prevTurns[0].player === 'X') {
-          curPlayer = 'O';
-        }
+  function handleSelectSq(rowIndex, colIndex) {
+    setGameTurns((prevTurns) => {
+        
+        const currentPlayer = deriveActivePlayer(prevTurns);
+
         const updatedTurns = [
-          {squarebox: {row: rowIndex, col: colIndex}, player: curPlayer}, 
+          {squarebox: {row: rowIndex, col: colIndex}, player: currentPlayer}, 
           ...prevTurns];
 
 
