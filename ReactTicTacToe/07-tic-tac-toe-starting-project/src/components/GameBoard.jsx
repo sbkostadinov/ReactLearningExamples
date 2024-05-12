@@ -9,39 +9,11 @@ const initGameBoard = [
 ];
 
 /*passing state down using SelectSquareProp*/
-export default function GameBoard ( {selectSquare, turns } ){
+export default function GameBoard ( {selectSquare, board } ){
 
-    let gameBoard = initGameBoard;
-
-
-    /*Iterate over turns array as a means of checking if it is empty*/
-
-    for (const turn of turns) {
-        const {squarebox, player} = turn;
-        const {row, col}  = squarebox;
-
-
-        gameBoard[row][col] = player;
-     }
-
-
-    /*const [gameBoard, setGameBoard] =  useState(initGameBoard);
-
-    function handlePSelectSquare(rowIndex, colIndex) { 
-        setGameBoard( (prevGameBoard) => {
-
-            const updatetedGBoard = [...prevGameBoard.map( (innerArray) => [...innerArray] )];
-            updatetedGBoard[rowIndex][colIndex] = activePlayerSymb;
-            return updatetedGBoard;
-
-        });
-
-        selectSquare();
-    }
-        */
 
     return ( <ol id="game-board">
-        {gameBoard.map( (row, rowIndex) => 
+        {board.map( (row, rowIndex) => 
         <li key={rowIndex}>
             <ol>
                 {row.map((playerSymb, colIndex ) => ( 
