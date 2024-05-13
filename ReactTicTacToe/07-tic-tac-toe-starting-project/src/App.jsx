@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import { GameBoard } from './components/GameBoard.jsx';
+import { GameOver } from './components/GameOver.jsx';
 import { Log } from './components/Log.jsx';
 import { Player } from './components/Player.jsx';
 import { WINNING_COMBINATIONS } from './components/winning-combinations.js';
-
 
 const initGameBoard = [
   [null, null, null],
@@ -35,7 +35,7 @@ export function App() {
 
 
 
-  let gameBoard = initGameBoard;
+  let gameBoard = [...initGameBoard.map(array => [...array])];
 
   let winner;
 
@@ -62,6 +62,8 @@ export function App() {
         }
      }
 
+  const isDraw = gameTurns.length === 9 && !winner;
+
   function handleSelectSq(rowIndex, colIndex) {
     setGameTurns((prevTurns) => {
         
@@ -73,7 +75,11 @@ export function App() {
 
         return updatedTurns; 
     });
+  }
 
+  function resetGameBoard() {
+    setGameTurns([]);
+    return gameTurns;
   }
   
   return (
@@ -84,7 +90,7 @@ export function App() {
           <Player initialname="Player 1" symbol="X" isActive={activePlayer === 'X'} />
           <Player initialname="Player 2" symbol="O" isActive={activePlayer === 'O'}/>  
         </ol>
-        {winner &&<p>Congratulations you won,`` {winner}!</p> }
+        { (winner || isDraw ) && < GameOver winner={winner} rematch={resetGameBoard}/>}
         <GameBoard  selectSquare={handleSelectSq} board={gameBoard}/>
       </div>
       <Log gameBoardTurns={gameTurns}/>
