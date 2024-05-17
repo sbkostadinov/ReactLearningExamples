@@ -1,11 +1,10 @@
-import { useCallback, useRef, useState } from 'react';
+import { useRef, useState, useCallback } from 'react';
 
+import Places from './components/Places.jsx';
+import Modal from './components/Modal.jsx';
+import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
 import AvailablePlaces from './components/AvailablePlaces.jsx';
-import DeleteConfirmation from './components/DeleteConfirmation.jsx';
-import Modal from './components/Modal.jsx';
-import Places from './components/Places.jsx';
-
 
 function App() {
   const selectedPlace = useRef();
