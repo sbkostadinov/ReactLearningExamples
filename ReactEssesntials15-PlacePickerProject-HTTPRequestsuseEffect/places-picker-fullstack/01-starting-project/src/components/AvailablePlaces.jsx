@@ -12,6 +12,9 @@ export default function AvailablePlaces({ onSelectPlace }) {
   const [isFetching, setIsFetching ] = useState(false);
   const [error, setError] = useState(false);
   
+  useEffect (()=> {
+
+  }, [])
 
   useEffect ( ()=> { 
     async function  fetchPlacesData () {
