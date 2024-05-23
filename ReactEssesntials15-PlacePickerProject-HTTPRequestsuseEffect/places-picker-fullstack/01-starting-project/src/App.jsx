@@ -3,6 +3,7 @@ import { useCallback, useRef, useState } from 'react';
 import logoImg from './assets/logo.png';
 import AvailablePlaces from './components/AvailablePlaces.jsx';
 import DeleteConfirmation from './components/DeleteConfirmation.jsx';
+import { Error } from './components/Error.jsx';
 import Modal from './components/Modal.jsx';
 import Places from './components/Places.jsx';
 import { updateUserPlaces } from "./http.js";
@@ -11,6 +12,8 @@ function App() {
   const selectedPlace = useRef();
 
   const [userPlaces, setUserPlaces] = useState([]);
+
+  const [errorUpdPlaces, setErrorUpdPlaces ] = useState();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -24,6 +27,8 @@ function App() {
   }
 
   async function handleSelectPlace(selectedPlace) {
+    //await updateUserPlaces([selectedPlace, ...userPlaces]); Can make wbe page look stuck especially if we use a spinner or loding / progress bar
+
     setUserPlaces((prevPickedPlaces) => {
       if (!prevPickedPlaces) {
         prevPickedPlaces = [];
@@ -39,7 +44,9 @@ function App() {
     try {
     await updateUserPlaces([selectedPlace, ...userPlaces]);
     } catch (error) {
-        //.....
+        //..... optimistic update
+        setUserPlaces(userPlaces);
+        setErrorUpdPlaces({message: error.message || 'Failed to update places'});
     }
   }
 
@@ -51,8 +58,22 @@ function App() {
     setModalIsOpen(false);
   }, []);
 
+  function handleErrorUpdPlaces() {
+      setErrorUpdPlaces(null);
+  }
+
   return (
     <>
+
+      <Modal open={errorUpdPlaces} onClose={handleErrorUpdPlaces}>
+          {errorUpdPlaces && (
+           <Error 
+              title="An error took place!" 
+              message={errorUpdPlaces.message}
+              onConfirm={handleErrorUpdPlaces}
+            />
+          )}
+      </Modal>
       <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
         <DeleteConfirmation
           onCancel={handleStopRemovePlace}
